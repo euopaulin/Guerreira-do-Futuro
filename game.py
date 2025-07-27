@@ -1,41 +1,28 @@
 import pygame
 import sys
 
-pygame.init()
+display=pygame.display.set_mode((1280, 720))
 
-screen= pygame.display.set_mode((800,600))
+player1 = pygame.Rect(100, 100, 50, 50)
+player2 = pygame.Rect(200, 100, 50, 50)
+ball= pygame.Rect(600,123, 323, 223)
 
-pygame.display.set_caption("A guerreira do Futuro")
 
-background_color=(131,111,255)
+loop = True
+while loop:
 
-player_color = (255, 0, 0)
-
-player_x = 100
-player_y = 100
-player_width = 50
-player_height = 50
-
-player_speed = 5
-
-#Game loop
-running = True
-while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
-            running = False
+            loop = False
 
-        screen.fill(background_color)           
+    pygame.display.flip()
 
-        pygame.player_x = player_speed
+    pygame.draw.rect(display, "white", player1)
 
-        pygame.draw.rect(screen, player_color, (player_x, player_y, player_width, player_height))
+    pygame.draw.rect(display, "blue", player2)
+
+    pygame.draw.circle(display, "red", ball.center, 8)
+
+    pygame.display.flip()  # Clear the screen with black
+
             
-        pygame.display.update()
-
-
-            
-
-pygame.quit()
-sys.exit()
-        
