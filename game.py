@@ -51,6 +51,8 @@ while loop:
 
     pygame.display.flip()
 
+
+    # Teste
 pygame.quit()
 sys.exit()
 
