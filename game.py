@@ -1,37 +1,58 @@
 import pygame
 import sys
 
-display=pygame.display.set_mode((1280, 720))
+pygame.init()
 
-player1 = pygame.Rect(0, 0, 50, 50)
+display = pygame.display.set_mode((1280, 720)) #tamanho do display
+
+player1 = pygame.Rect(0, 0, 50, 50) #Boneco do player
+player1_speed = 0 #Velocidade do player
 player2 = pygame.Rect(200, 100, 50, 50)
-ball= pygame.Rect(600,123, 323, 223)
+player2_speed = 0
+ball = pygame.Rect(600, 123, 323, 223)
 
 
 loop = True
 while loop:
-
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             loop = False
 
+        #Controle do player1
         if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_SPACE:
-                player1.x += 50
-            elif event.key == pygame.K_a:
-                player2.y -= 50
-            elif event.key == pygame.K_d:
-                ball.x += 50
+            if event.key == pygame.K_a:
+                player1_speed = -2
 
+            elif event.key == pygame.K_d:
+                player1_speed = 2
+
+        if event.type == pygame.KEYUP:
+            if event.key in (pygame.K_a, pygame.K_d):
+                player1_speed = 0
+        
+        if player1.y <= 0:
+            player1.y = 0
+        elif player1.y >= 670:
+            player1.y = 670
+        
+        #Controle do player2
+        if player2.x <= 0:
+            player2.y = 0
+        elif player2.y >= 670:
+            player2.y = 670
+
+    player1.y += player1_speed  #Aqui toda vez que eu clicar com o A ou D irá acrescentar a velocidade do player
+
+    display.fill((0, 0, 0)) 
+
+    pygame.draw.rect(display, "white", player1)
+    pygame.draw.rect(display, "blue", player2)
+    pygame.draw.circle(display, "red", ball.center, 8)
 
     pygame.display.flip()
 
-    pygame.draw.rect(display, "white", player1)
+pygame.quit()
+sys.exit()
 
-    pygame.draw.rect(display, "blue", player2)
-
-    pygame.draw.circle(display, "red", ball.center, 8)
-
-    pygame.display.flip()  # Clear the screen with black
 
             
