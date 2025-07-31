@@ -30,6 +30,19 @@ while loop:
             if event.key in (pygame.K_a, pygame.K_d):
                 player1_speed = 0
         
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_LEFT:
+                player2_speed = -2
+
+            elif event.key == pygame.K_RIGHT:
+                player2_speed = 2
+
+        if event.type == pygame.KEYUP:
+            if event.key in (pygame.K_LEFT, pygame.K_RIGHT):
+                player2_speed = 0
+
+        #Controle do player1
+
         if player1.y <= 0:
             player1.y = 0
         elif player1.y >= 670:
