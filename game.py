@@ -10,7 +10,9 @@ player1_speed = 0 #Velocidade do player
 player2 = pygame.Rect(200, 100, 50, 50)
 player2_speed = 0
 ball = pygame.Rect(600, 123, 323, 223)
-
+ball_speed = 0
+ball_dir_x = 1
+ball_dir_y = 1
 
 loop = True
 while loop:
@@ -29,32 +31,30 @@ while loop:
         if event.type == pygame.KEYUP:
             if event.key in (pygame.K_a, pygame.K_d):
                 player1_speed = 0
-        
-        if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_LEFT:
-                player2_speed = -2
-
-            elif event.key == pygame.K_RIGHT:
-                player2_speed = 2
-
-        if event.type == pygame.KEYUP:
-            if event.key in (pygame.K_LEFT, pygame.K_RIGHT):
-                player2_speed = 0
 
         #Controle do player1
-
         if player1.y <= 0:
             player1.y = 0
         elif player1.y >= 670:
             player1.y = 670
-        
-        #Controle do player2
-        if player2.x <= 0:
-            player2.y = 0
-        elif player2.y >= 670:
-            player2.y = 670
 
-    player1.y += player1_speed  #Aqui toda vez que eu clicar com o A ou D irá acrescentar a velocidade do player
+    player1.y += player1_speed 
+
+    #Controle da bola
+    if ball.y <= 0:
+        ball.y = 600   
+    elif ball.x <= 1280:
+        ball.x = 600
+
+    if ball.y <= 0:
+        ball_dir_y *= -1
+    elif ball.y >= 720 - 15:
+        ball_dir_y *= -1
+
+    ball.x = ball_dir_x
+    ball.y = ball_dir_y
+        
+    # Aqui toda vez que eu clicar com o A ou D irá acrescentar a velocidade do player
 
     display.fill((0, 0, 0)) 
 
