@@ -24,6 +24,9 @@ ball_speed_x = 0
 ball_speed_y = 0
 ball_dir_x = 1
 ball_dir_y = 1
+y1 = 0
+img_height = background_image.get_height()
+y2 = -img_height
 
 clock = pygame.time.Clock()
 FPS = 200
@@ -33,7 +36,7 @@ while loop:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             loop = False
-            
+    
         #Controle do player1 e player2
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_a:
@@ -108,6 +111,9 @@ while loop:
 
     ball.x = ball_dir_x
     ball.y = ball_dir_y
+    
+
+    
         
     # Aqui toda vez que eu clicar com o A ou D irá acrescentar a velocidade do player
 
@@ -121,8 +127,6 @@ while loop:
     pygame.display.flip()
 
     clock.tick(FPS)
-
-    # Teste
 pygame.quit()
 sys.exit()
 
